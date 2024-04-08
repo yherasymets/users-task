@@ -55,11 +55,10 @@ func searchByName(name string, users []User) []User {
 
 // sendJSON encodes data as JSON and writes it to the response writer
 func sendJSON(w http.ResponseWriter, statusCode int, data any) error {
-	json, err := json.MarshalIndent(data, "", "\t")
+	json, err := json.Marshal(data)
 	if err != nil {
 		return err
 	}
-	json = append(json, '\n')
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
 	if _, err := w.Write(json); err != nil {
