@@ -44,7 +44,7 @@ func (a *App) getUserHandler(w http.ResponseWriter, r *http.Request) {
 
 // searchByName filters users by name
 func searchByName(name string, users []User) []User {
-	var result []User
+	result := make([]User, 0)
 	for _, user := range users {
 		if user.Name == name {
 			result = append(result, user)
